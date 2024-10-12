@@ -1,4 +1,4 @@
-# File Uploader - Telepítési és Indítási Útmutató
+# Image Uploader - Telepítési és Indítási Útmutató
 
 Ez a fájl részletes útmutatót nyújt a Spring Boot alkalmazás Docker konténerben történő telepítéséhez és futtatásához
 PostgreSQL adatbázissal. Az alábbi lépések követésével telepítheted és indíthatod az alkalmazást.
@@ -36,17 +36,20 @@ A projekt gyökerében található **Dockerfile** az alkalmazás buildeléséhez
 17-et:
 
 ```dockerfile
-# Amazon Corretto 17 használata
-FROM amazoncorretto:17-alpine
+FROM amazoncorretto:17
 
-# Alkalmazás forráskód másolása
-COPY . /app
+RUN yum install -y tar gzip
 
-# Alkalmazás építése Maven-nel
 WORKDIR /app
+
+COPY mvnw /app/mvnw
+COPY .mvn /app/.mvn
+COPY pom.xml /app
+COPY src /app/src
+
+RUN chmod +x mvnw
 RUN ./mvnw clean package -DskipTests
 
-# A JAR futtatása
 CMD ["java", "-jar", "target/image-uploader-0.0.1-SNAPSHOT.jar"]
 ```
 
