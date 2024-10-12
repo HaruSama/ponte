@@ -1,0 +1,137 @@
+openapi: 3.0.0
+info:
+  title: image Uploader API
+  description: API for uploading, resizing, encrypting, and downloading images
+  version: 1.0.0
+paths:
+  /api/images:
+    post:
+      tags:
+        - image-controller
+      summary: Upload images
+      description: Upload multiple images, resize them, and encrypt before saving.
+      operationId: uploadImages
+      parameters:
+        - name: width
+          in: query
+          required: true
+          schema:
+            type: integer
+            description: Width to resize the image to
+            minimum: 1
+            maximum: 5000
+        - name: height
+          in: query
+          required: true
+          schema:
+            type: integer
+            description: Height to resize the image to
+            minimum: 1
+            maximum: 5000
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                images:
+                  type: array
+                  minItems: 1
+                  items:
+                    type: string
+                    format: binary
+                    description: Image to be uploaded
+            encoding:
+              images:
+                contentType: image/png, image/jpeg
+      responses:
+        '200':
+          description: Images uploaded and processed successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UploadImageResponse'
+        '400':
+          description: Invalid input or image format
+        '413':
+          description: Image size exceeds limit of 5000x5000 pixels
+    get:
+      tags:
+        - image-controller
+      summary: Download all images in a ZIP
+      description: Decrypt and download all images as a ZIP image.
+      operationId: downloadAllImages
+      responses:
+        '200':
+          description: ZIP image containing all decrypted images
+          content:
+            application/zip:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Server error
+
+  /api/image/{imageName}:
+    get:
+      tags:
+        - image-controller
+      summary: Download an image by image name
+      description: Decrypt and download an image by its image name.
+      operationId: downloadImage
+      parameters:
+        - $ref: '#/components/parameters/ImageName'
+      responses:
+        '200':
+          description: The decrypted image image
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: image not found
+components:
+  parameters:
+    ImageName:
+      name: imageName
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The name of the image to download
+  schemas:
+    UploadImagesRequest:
+      type: object
+      properties:
+        image:
+          type: string
+          format: binary
+        width:
+          type: integer
+          description: Width to resize the image to
+          minimum: 1
+          maximum: 5000
+        height:
+          type: integer
+          description: Height to resize the image to
+          minimum: 1
+          maximum: 5000
+      required:
+        - image
+        - width
+        - height
+    UploadImageResponse:
+      type: object
+      properties:
+        fileName:
+          type: string
+        fileSize:
+          type: integer
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic

@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: File Uploader
+  datasource:
+    url: jdbc:postgresql://localhost:8081/image_upload
+    username: ${DB_USER:user12345}
+    password: ${DB_PASS:password12345}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create   #'create', 'create-drop', 'validate', 'none'
+    open-in-view: false
