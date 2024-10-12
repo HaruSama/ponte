@@ -132,3 +132,7 @@ Ha le szeretnéd állítani a konténereket, futtasd az alábbi parancsot:
 ```bash
 docker-compose -f infra/docker-compose.yml down
 ```
+
+## 2.1 Api dokumentáció
+ Az src/main/resources/api/internal/common/api.yml fájlon keresztül érhető el.
+
