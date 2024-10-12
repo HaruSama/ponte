@@ -25,7 +25,7 @@ project-root/
 │       └── java/... (alkalmazás forráskód)
 │
 ├── Dockerfile
-├── HELP.md
+├── README.md
 ├── pom.xml (Maven projektfájl)
 └── mvnw, mvnw.cmd (Maven Wrapper, ha használod)
 ```
