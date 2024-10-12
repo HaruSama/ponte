@@ -1,0 +1,24 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:17
+    restart: always
+    environment:
+      POSTGRES_USER: user12345
+      POSTGRES_PASSWORD: password12345
+      POSTGRES_DB: image_upload
+    ports:
+      - "8081:5432"
+
+  app:
+    build: ../
+    depends_on:
+      - db
+    environment:
+      DB_URL: jdbc:postgresql://db:5432/image_upload
+      DB_USER: user12345
+      DB_PASS: password12345
+      SPRING_PROFILES_ACTIVE: imgscalr
+    ports:
+      - "8080:8080"

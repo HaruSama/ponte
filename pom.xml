@@ -11,7 +11,7 @@
     <groupId>com.arasaka</groupId>
     <artifactId>image-uploader</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>File Uploader</name>
     <description>Spring Boot project for image upload, resizing, and encryption</description>
     <url/>
