@@ -5,10 +5,9 @@ PostgreSQL adatbázissal. Az alábbi lépések követésével telepítheted és 
 
 ## 1. Előfeltételek
 
-Győződj meg arról, hogy a következő eszközök telepítve vannak a gépeden:
+Győződj meg arról, hogy a következő eszköz telepítve van a gépeden:
 
 - **Docker**: [Docker Telepítési Útmutató](https://docs.docker.com/get-docker/)
-- **Docker Compose**: [Docker Compose Telepítési Útmutató](https://docs.docker.com/compose/install/)
 
 ## 2. Projekt Struktúra
 
