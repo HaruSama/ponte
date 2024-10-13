@@ -113,7 +113,7 @@ spring:
    Compose fájl alapján:
 
    ```bash
-   docker-compose -f infra/docker-compose.yml up --build
+   docker-compose -f infra/docker-compose.yml up --build -d
    ```
 
 Ez a parancs:
