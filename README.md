@@ -136,3 +136,5 @@ docker-compose -f infra/docker-compose.yml down
 ## 2.1 Api dokumentáció
  Az src/main/resources/api/internal/common/api.yml fájlon keresztül érhető el.
 
+## 3.1 Fejlesztői indítás
+  Indítani a imgscalr profil megadásával lehet, anélkül az applikáció nem indul el, mert nem tudja betölteni a megfelelő implementációkat.
