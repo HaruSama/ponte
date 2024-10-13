@@ -1,0 +1,12 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:17
+    restart: always
+    environment:
+      POSTGRES_USER: user12345
+      POSTGRES_PASSWORD: password12345
+      POSTGRES_DB: image_upload
+    ports:
+      - "8081:5432"

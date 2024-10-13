@@ -18,6 +18,8 @@ project-root/
 │
 ├── infra/
 │   └── docker-compose.yml
+│   └── db/
+│       └── docker-compose.yml
 │
 ├── src/
 │   └── main/
@@ -137,3 +139,7 @@ docker-compose -f infra/docker-compose.yml down
 
 ## 3.1 Fejlesztői indítás
   Indítani a imgscalr profil megadásával lehet, anélkül az applikáció nem indul el, mert nem tudja betölteni a megfelelő implementációkat.
+
+## 3.2 Adatbázis
+
+Az infra/db könyvtárban a docker-compose.yml fájlban található csak az adatbázis konfigurációja / indítása.
